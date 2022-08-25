@@ -1,0 +1,174 @@
+/* Fonts */
+
+@font-face {
+    font-family: AltaLight;
+    src: url(/static/fonts/alta-regular.otf);
+}
+@font-face {
+    font-family: Signal;
+    src: url(/static/fonts/signal-normal.otf)
+}
+@font-face {
+    font-family: ChivoBlack;
+    src: url(/static/fonts/chivo-black.otf)
+}
+@font-face {
+    font-family: Hattori;
+    src: url(/static/fonts/hattori.otf)
+}
+@font-face {
+    font-family: BrooklynSemiBold;
+    src: url(/static/fonts/brooklyn-semibold.ttf)
+}
+
+/* Main Styling */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-image: url(/static/imgs/background.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    margin: 0;
+    scrollbar-width: none; 
+    --input-border: transparent;
+    --valid-input: green;
+    --invalid-input: red;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+ul {
+    display: inline-block;
+    justify-content: center;
+    width: 100vw;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(0, 0, 0);
+}
+
+li {
+    display: inline;
+    float: left;
+    color: white;
+    cursor: pointer;
+}
+
+li a {
+    display: inline-block;
+    font-family: AltaLight;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    padding: 14px 16px;
+    transition-duration: 0.5s;
+}
+
+li a:visited {
+    color: white;
+}
+
+li a:hover {
+    background-color: rgb(206, 159, 159)
+}
+
+/* Sign In */
+
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+#sign-in {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+#sign-in-desc {
+    margin-bottom: 3vw;
+}
+
+h1 {
+    font-family: AltaLight;
+    font-size: 2.5em;
+    letter-spacing: 0.5vw;
+    color: white;
+    text-align: center;
+}
+
+p {
+    font-family: Hattori;
+    font-size: 1.2em;
+    color: white;
+    text-align: center;
+}
+
+#sign-in-container {
+    display: flex;
+    background-image: url("/static/imgs/red-gradient.gif");
+    border: solid thin white;
+    border-radius: 3px;
+    height: 25vw;
+    width: 40vw;
+    justify-content: center;
+    margin-bottom: 5vw;
+    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2), 0 10px 25px 0 rgba(0, 0, 0, 0.19);
+}
+
+.input-div {
+    display: grid;
+    grid-template-columns: 40% 50%;
+    padding: 2vw 2vw 2vw 2vw
+}
+
+.input-lbl {
+    font-family: BrooklynSemiBold;
+    color: white;
+    font-size: 1.5em;
+}
+
+.input {
+    border-radius: 3px;
+    height: 2vw;
+    width: 20vw;
+    font-size: 1em;
+    border-color: var(--input-border);
+    border: solid 0.2vw white;
+    margin-right: 3vw;
+    padding-left: 0.5vw;
+}
+
+.input:focus {
+    outline: none;
+}
+
+#email {
+    font-family: Verdana;
+    letter-spacing: 0.05vw;
+}
+
+#password {
+    font-family: Verdana;
+    letter-spacing: 0.05vw;
+}
+

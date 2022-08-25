@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/static/stylesheet/login.css"/>
+        <link rel="icon" type="image/x-icon" href="/static/imgs/favicon.png">
+        <script src="/static/script/login.js" defer></script>
+        <title>APODViewer - Login Page</title>
+    </head>
+    <body id="body">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="https://goolnk.com/Pb2oMD">Discord Bot</a></li>
+            <li><a href="http://simpleweathertracker.netlify.app">WeatherTracker</a></li>
+        </ul>
+
+        <section id="sign-in">
+            <div id="sign-in-desc">
+                <h1 id="heading">Sign Into APODVIEWER</h1>
+                <p>Sign in with your email and password to unlock features, such as saving your favourite APODs!</p>
+            </div>
+                <div id="sign-in-container">
+                    <form onsubmit="return false" autocomplete="off" data-netlify="true" netlify-honeypot="bot-field" id="login-form">
+                        <div hidden aria-hidden="true">
+                            <label for="bot-field" class="input-lbl">Bot Detection</label>
+                            <input type="text" name="bot-field" title="bot-field" id="bot-field" class="input" placeholder="bot-field">
+                        </div>
+                        <div class="input-div">
+                            <label for="email" class="input-lbl">Email:</label>
+                            <input required type="text" name="email" title="example@gmail.com" id="email" class="input" placeholder="example@gmail.com" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$">
+                        </div>
+                        <div class="input-div">
+                            <label for="password" class="input-lbl">Password:</label>
+                            <input required type="password" name="password" title="At least 8 characters" id="password" class="input" placeholder="Enter your password" pattern=".{8,}">
+                        </div>
+                        <div class="input-div">
+                            <label for="keep-signed-in">Keep Signed In</label>
+                            <input type="checkbox" name="keep-signed-in" title="Keep Signed In!" id="keep-signed-in">
+                        </div>
+                        <input type="submit" id="submit-button" value="Submit">
+                    </form>
+                </div>
+            </div>
+        </section>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.birds.min.js"></script>
+        <script>
+            VANTA.BIRDS({
+                el: "#body",
+                mouseControls: true,
+                touchControls: true,
+                gyroControls: false,
+                minHeight: 200.00,
+                minWidth: 200.00,
+                scale: 1.00,
+                scaleMobile: 1.00,
+                color1: 0x0,
+                color2: 0x890e0e,
+                birdSize: 1.20,
+                wingSpan: 40.00,
+                speedLimit: 10.00,
+                cohesion: 100.00,
+                quantity: 2.00,
+                backgroundAlpha: 0.00
+            })
+        </script>
+    </body>
+</html>

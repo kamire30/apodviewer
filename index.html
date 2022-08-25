@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/static/stylesheet/styles.css"/>
+        <link rel="icon" type="image/x-icon" href="/static/imgs/favicon.png">
+        <title>APODViewer - Easy To Use Space Image Viewer</title>
+        <script src="/static/script/apod.js" defer></script>
+        <script src="/static/script/login.js" defer></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    </head>
+    <body id="body">
+        <ul>
+            <li><a href="https://goolnk.com/Pb2oMD">Discord Bot</a></li>
+            <li><a href="http://simpleweathertracker.netlify.app">WeatherTracker</a></li>
+            <li id="search-bar-li">
+                <form onsubmit="return false">
+                    <button type="reset" class="search" id="reset-btn">Reset</button>
+                    <input type="date" name="date" class="search" id="search-bar" min="1995-06-20" required>
+                    <button type="submit" class="search" id="submit-btn"></button>
+                </form>
+            </li>
+        </ul>
+        <section id="top-page">
+            <div id="top-apod-info">
+                <div id="photographer-div">
+                    <img id=camera-icon src="static/imgs/camera.png" alt="White Camera">
+                    <h3 class="apod-info" id="photographer">
+                        Photographer
+                    </h3>
+                </div>
+                <a id="click-for-more">
+                    <div id="info-click">
+                        <img id=info-icon src="static/imgs/info.jpg" alt="Info Icon">
+                        <h3 class="apod-info">
+                            Click for more info
+                        </h3>
+                    </div>
+                </a>
+            </div>
+            <div id="title">
+                <h2 id="title-text">
+                    Fetching Image. . .
+                </h2>
+            </div>
+            <div id="sources">
+                <h5 class="apod-info">
+                    Made Possible By NASA's APOD API
+                </h5>
+            </div>
+        </section>
+        
+        <section id="middle-page">
+            
+            <div class="middle-page-div" id="yesterday-data">
+                <div class="img-div-container">
+                    <img id="yesterday-img" class="apod-img" src="/static/imgs/red-gradient.gif">
+                    <iframe title="Yesterday's APOD Video" id="yesterday-vid" allow="fullscreen"></iframe>
+                </div>
+            </div>
+
+            <div class="middle-page-div" id="today-data">
+                <div id="today-img-div" class="img-div-container">
+                    <div id="today-positioning-div">
+                        <img id="today-img" class="apod-img" src="/static/imgs/red-gradient.gif">
+                        <iframe title="Today's APOD Video" id="today-vid" allow="fullscreen"></iframe>
+                        <a id="heart-icon-a">
+                            <img title="Favourite this APOD!" id="heart-icon" src="/static/imgs/white-heart.png">
+                        </a>
+                    </div>
+                </div>
+                <div class="middle-inner-div">
+                    <button id="move-back">Yesterday</button>
+                    <img class="calendar-icon" src="/static/imgs/calendar.jpg" alt="Calendar Icon">
+                    <h2 class="apod-info" id="date-text">Date: - -</h2>
+                    <button id="move-forward">Tomorrow</button>
+                </div>
+            </div>
+
+            <div class="middle-page-div" id="tmrw-data">
+                <div class="img-div-container">
+                    <img id="tmrw-img" class="apod-img">
+                    <iframe title="Tomorrow's APOD Video" id="tmrw-vid" allow="fullscreen"></iframe>
+                </div>
+            </div>
+
+        </section>
+
+        <section id="bottom-page">
+            <div class="outer-bottom-div" id="apod-stats-unique">
+                <div id="apod-stats-div">
+                    <div>
+                        <img class="apod-stats-img" id="camera-stat" src="static/imgs/camera-two.png">
+                        <h4 class="apod-stats" id="camera-h4">Photographer: - -</h4>
+                    </div>
+                    <a id="link-div" target="_blank">
+                        <div>
+                            <img class="apod-stats-img" id="link-stat" src="static/imgs/link.png">
+                            <h4 class="apod-stats" id="link-h4">Original Link Click Here!</h4>
+                        </div>
+                    </a>
+                    <div>
+                        <img class="apod-stats-img" id="media-stat" src="static/imgs/image-icon.png">
+                        <h4 class="apod-stats" id="media-h4">Media Type: - -</h4>
+                    </div>
+                    <div>
+                        <img class="apod-stats-img" id="version-stat" src="static/imgs/version.png">
+                        <h4 class="apod-stats" id="version-h4">Service Version: - -</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="outer-bottom-div" id="apod-explanation">
+                <div>
+                    <h2>Explanation</h2>
+                </div>
+                <div>
+                    <p id="apod-explanation-p">Text</p>
+                </div>
+            </div>
+
+            <div class="outer-bottom-div" id="black-bar">
+                <h1>APOD</h1>
+                <h6>CREATED BY PEPEGA</h6>
+            </div>
+        </section>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.birds.min.js"></script>
+        <script>
+            VANTA.BIRDS({
+                el: "#body",
+                mouseControls: true,
+                touchControls: true,
+                gyroControls: false,
+                minHeight: 200.00,
+                minWidth: 200.00,
+                scale: 1.00,
+                scaleMobile: 1.00,
+                color1: 0x0,
+                color2: 0x890e0e,
+                birdSize: 1.20,
+                wingSpan: 40.00,
+                speedLimit: 10.00,
+                cohesion: 100.00,
+                quantity: 2.00,
+                backgroundAlpha: 0.00
+            })
+        </script>
+    </body>
+</html>
