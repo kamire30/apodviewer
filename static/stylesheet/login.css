@@ -172,3 +172,11 @@ p {
     letter-spacing: 0.05vw;
 }
 
+#keep-signed-in {
+    color: white;
+    font-family: BrooklynSemiBold;
+    font-size: 0.8em;
+}
+
+
+
