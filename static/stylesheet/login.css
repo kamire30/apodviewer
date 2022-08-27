@@ -38,10 +38,18 @@ body {
     --input-border: transparent;
     --valid-input: green;
     --invalid-input: red;
+    --btn-height: 2.5vw;
+    --btn-width: 9vw;
+    --btn-bg: #ddd;
+    --btn-opacity: 0.5;
 }
 
 body::-webkit-scrollbar {
     display: none;
+}
+
+button:hover {
+    cursor: pointer;
 }
 
 ul {
@@ -108,6 +116,16 @@ li a:hover {
     margin-bottom: 3vw;
 }
 
+form {
+    display: flex;
+    flex-direction: column;
+    border: solid thin green;
+}
+
+form div {
+    width: 90%;
+}
+
 h1 {
     font-family: AltaLight;
     font-size: 2.5em;
@@ -129,7 +147,7 @@ p {
     border: solid thin white;
     border-radius: 3px;
     height: 25vw;
-    width: 40vw;
+    width: fit-content;
     justify-content: center;
     margin-bottom: 5vw;
     box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2), 0 10px 25px 0 rgba(0, 0, 0, 0.19);
@@ -137,12 +155,13 @@ p {
 
 .input-div {
     display: grid;
-    grid-template-columns: 40% 50%;
+    width: 90%;
+    grid-template-columns: 40% 60%;
     padding: 2vw 2vw 2vw 2vw
 }
 
 .input-lbl {
-    font-family: BrooklynSemiBold;
+    font-family: Signal;
     color: white;
     font-size: 1.5em;
 }
@@ -172,10 +191,50 @@ p {
     letter-spacing: 0.05vw;
 }
 
+#keep-signed:hover {
+    cursor: pointer;
+}
+
 #keep-signed-in {
     color: white;
     font-family: BrooklynSemiBold;
     font-size: 0.8em;
+}
+
+#checked-div {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+}
+
+#submit-btn-div {
+    display: flex;
+    justify-content: center;
+    padding: 2vw 2vw 2vw 2vw;
+}
+
+.submit-btn {
+    width: var(--btn-width);
+    height: var(--btn-height);
+    margin: auto 2vw auto 2vw;
+    font-family: Signal;
+    font-size: 1vw;
+    cursor: pointer;
+    background-color: var(--btn-bg);
+    opacity: var(--btn-opacity);
+    border-radius: 3px;
+    border: none;
+    box-shadow: 0 10px 21px 0 rgba(0, 0, 0, 0.434), 0 20px 30px 0 rgba(0, 0, 0, 0.379);
+    transition: width 0.5s ease-in-out, height 0.5s ease-in-out, background-color 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.submit-btn:hover {
+    --btn-width: 12vw;
+    --btn-height: 3vw;
+    --btn-bg: white;
+    --btn-opacity: 1;
 }
 
 

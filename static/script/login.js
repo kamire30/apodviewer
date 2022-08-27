@@ -2,20 +2,26 @@
 
 email_entry = document.getElementById("email");
 password_entry = document.getElementById("password");
+keep_signed = document.getElementById("keep-signed");
 
 /* Login & Favourites */
 
 var al = document.getElementById("heart-icon-a");
 if(al){
-  al.addEventListener('click', function(){favourite_apod()});
+  al.addEventListener("click", function(){favourite_apod()});
 }
 
 var el = document.getElementById("submit-button");
 if(el){
-  el.addEventListener('click', function(){handle_submit()});
+  el.addEventListener("click", function(){signup_submit()});
 }
 
-email_entry.addEventListener('input', (event) => {
+var ol = document.getElementById("login-button");
+if(ol){
+  ol.addEventListener("click", function(){login_submit()});
+}
+
+email_entry.addEventListener("input", (event) => {
     if (email_entry.checkValidity() == false) {
         email_entry.style.color = "red";
         email_entry.style.border = "solid 0.2vw red";
@@ -29,7 +35,7 @@ email_entry.addEventListener('input', (event) => {
     }
 }); 
 
-password_entry.addEventListener('input', (event) => {
+password_entry.addEventListener("input", (event) => {
     if (password_entry.checkValidity() == false) {
         password_entry.style.color = "red";
         password_entry.style.border = "solid 0.2vw red";
@@ -61,23 +67,20 @@ function favourite_apod() {
         heart_icon.src = "static/imgs/white-heart.png";
     }
 
-    console.log(localStorage.length);
-    console.log(sessionStorage.length);
-
-    if ((localStorage.length == 0 && sessionStorage.length == 0) || (localStorage.length == 0 && sessionStorage.length == 1)) {
+    if (localStorage.getItem("signedInStatus") != true) {
         location.replace("html/login.html");
     }
 }
 
 
 
-function handle_submit() {
+// Handling sign-ups
+function signup_submit() {
     fetch(`/.netlify/functions/handle_form?email=${email_entry.value}&pass=${password_entry.value}`) 
         .then(res => res.json())
         .then(data => {
             // Validity Tests
             for (let i = 0; i < data["records"].length; i++) {
-                console.log(data["records"][i]["fields"]["email"])
                 if (data["records"][i]["fields"]["email"] == email_entry.value) {
                     email_entry.style.color = "red";
                     email_entry.style.borderColor = "red";
@@ -88,8 +91,38 @@ function handle_submit() {
             fetch(`/.netlify/functions/create_record?email=${email_entry.value}&pass=${password_entry.value}`)
                 .then(res => res.json())
                 .then(data => {
-                    fetch(`/.netlify/functions/update_record?field_id=${data["id"]}&email=${email_entry.value}&pass=${password_entry.value}`);
+                    if (keep_signed.checked == true) {
+                        localStorage.setItem("signedInStatus", true);
+                        localStorage.setItem("fieldId", data["id"]);
+                    }
+                    fetch(`/.netlify/functions/update_record?field_id=${data["id"]}&email=${data["fields"]["email"]}&pass=${data["fields"]["password"]}`);
                 })
             
+        })
+}
+
+
+
+// Handle log in requests
+function login_submit() {
+    fetch(`/.netlify/functions/handle_form?email=${email_entry.value}&pass=${password_entry.value}`) 
+        .then(res => res.json())
+        .then(data => {
+            const plaintext_password = password_entry.value
+
+            for (let i = 0; i < data["records"].length; i++) {
+                // Returned data var declarations
+                const returned_email = data["records"][i]["fields"]["email"];
+                const returned_pass = data["records"][i]["fields"]["password"];
+                const returned_id = data["records"][i]["id"];
+
+                if (returned_email == email_entry.value) {
+                    fetch(`/.netlify/functions/validate_login?email=${returned_email}&pass=${returned_pass}&ptext_pass=${plaintext_password}`)
+                        .then(res => res.json())
+                        .then(data => {
+                            console.log(data)
+                        })
+                }
+            }
         })
 }
