@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 const handler = async (event) => {
   // Var Declaring
   const salt_rounds = 10;
-  const url = "https://api.airtable.com/v0/app6lXK9YVcbG5kzu/login_details"
+  const url = "https://api.airtable.com/v0/app6lXK9YVcbG5kzu/login_details";
 
   // Query String Parameters
   const email = event.queryStringParameters.email;
@@ -17,7 +17,8 @@ const handler = async (event) => {
     "fields": {
       "field-id": "placeholder",
       "email": email,
-      "password": password
+      "password": password,
+      "saves": "[]"
     }
   }
 
@@ -27,10 +28,10 @@ const handler = async (event) => {
       "Content-Type": "application/json"
     }
   });
-  
+
   return {
     statusCode: 200,
-    body: JSON.stringify(data)
+    body: JSON.stringify(data),
   }}
   
 module.exports = { handler }

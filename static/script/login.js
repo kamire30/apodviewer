@@ -94,6 +94,9 @@ function signup_submit() {
                     if (keep_signed.checked == true) {
                         localStorage.setItem("signedInStatus", true);
                         localStorage.setItem("fieldId", data["id"]);
+                    } else {
+                        sessionStorage.setItem("signedInStatus", true);
+                        sessionStorage.setItem("fieldId", data["id"]);
                     }
                     fetch(`/.netlify/functions/update_record?field_id=${data["id"]}&email=${data["fields"]["email"]}&pass=${data["fields"]["password"]}`);
                 })
@@ -103,7 +106,7 @@ function signup_submit() {
 
 
 
-// Handle log in requests
+// Handle login requests
 function login_submit() {
     fetch(`/.netlify/functions/handle_form?email=${email_entry.value}&pass=${password_entry.value}`) 
         .then(res => res.json())
@@ -119,8 +122,24 @@ function login_submit() {
                 if (returned_email == email_entry.value) {
                     fetch(`/.netlify/functions/validate_login?email=${returned_email}&pass=${returned_pass}&ptext_pass=${plaintext_password}`)
                         .then(res => res.json())
-                        .then(data => {
-                            console.log(data)
+                        .then(valid => {
+                            const validity = valid["message"];
+                            if (validity == false) {
+                                password_entry.style.color = "red";
+                                password_entry.style.borderColor = "red";
+                                return
+                            }
+                            else if (validity == true && keep_signed.checked == true) {
+                                localStorage.setItem("fieldId", returned_id);
+                                localStorage.setItem("signedInStatus", true);
+                                location.replace("/");
+                                return;
+                            } else if (validity == true && keep_signed.checked == false) {
+                                sessionStorage.setItem("fieldId", returned_id);
+                                sessionStorage.setItem("signedInStatus", false);
+                                location.replace("/");
+                                return;
+                            }
                         })
                 }
             }

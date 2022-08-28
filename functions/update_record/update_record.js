@@ -6,7 +6,8 @@ const handler = async (event) => {
   const password = event.queryStringParameters.pass;
   const API_KEY = process.env.AIRTABLE_KEY;
   const url = `https://api.airtable.com/v0/app6lXK9YVcbG5kzu/login_details/${field_id}`;
-  
+
+
 
   try {
     const param = {

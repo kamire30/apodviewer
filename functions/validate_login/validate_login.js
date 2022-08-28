@@ -1,30 +1,26 @@
-const axios = require("axios");
 const bcrypt = require("bcrypt");
 
 const handler = async (event) => {
-  email = event.queryStringParameters.email;
-  password = event.queryStringParameters.pass;
-  plaintext_password = event.queryStringParameters.ptext_pass;
+  const email = event.queryStringParameters.email;
+  const password = event.queryStringParameters.pass;
+  const plaintext_password = event.queryStringParameters.ptext_pass;
 
-  try {
-    bcrypt.compare(plaintext_password, password, function(err, result) {
-      if (result == true) {
-        console.log("RIOTHYIOJRJIOGJOGIIOGJJGDFI")
-        return {
-          statusCode: 200,
-          body: "hehehe",
-        }
-      }
-  });
+  const match = await bcrypt.compare(plaintext_password, password)
 
-  } catch (error) {
-    const {status, statusText, headers, data} = error.response;
-
+  if (match == true) {
     return {
-      statusCode: status, 
-      body: JSON.stringify({status, statusText, headers, data})
+      statusCode: 200,
+      body: JSON.stringify({ message: true }),
+    } 
+  } else {
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ message: false })
     }
   }
+  
+
+  
 }
 
 module.exports = { handler }
